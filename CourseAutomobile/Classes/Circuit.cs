@@ -8,7 +8,7 @@ namespace CourseAutomobile.Classes
 {
     public class Circuit
     {
-        Dictionary<string, Voiture> Voitures = new Dictionary<string, Voiture>();
+        public Dictionary<string, Voiture> Voitures = new Dictionary<string, Voiture>();
         public double Kilometre { get; set; }
         public int NombreTour { get; set; }
         public Circuit(double kilometre, int nbtour)

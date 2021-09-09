@@ -1,5 +1,6 @@
 ﻿using CourseAutomobile.Classes;
 using System;
+using System.Collections.Generic;
 
 namespace CourseAutomobile
 {
@@ -17,12 +18,16 @@ namespace CourseAutomobile
             circuit.AjouterVoiture(voiture1);
             circuit.AjouterVoiture(voiture2);
 
-            circuit["alonso"]
+            
 
             while (voiture1.TourParcourut <  circuit.NombreTour && voiture2.TourParcourut < circuit.NombreTour)
             {
-                voiture1.ParcourirUnTour(circuit.Kilometre);
-                voiture2.ParcourirUnTour(circuit.Kilometre);
+                foreach (var item in circuit.Voitures)
+                {
+                    item.Value.ParcourirUnTour(item.Value.C.Kilometre);
+                }
+                //voiture1.ParcourirUnTour(circuit.Kilometre);
+                //voiture2.ParcourirUnTour(circuit.Kilometre);
 
             }
             //temps total pour comparer les temps (ajouter une propriété)
