@@ -8,13 +8,21 @@ namespace CourseAutomobile.Classes
 {
     class Voiture
     {
-        public Voiture(string model, string marque)
+
+        public event Action<Voiture, Circuit, double> tourFiniEvent = null;
+
+
+        public Voiture(string model, string marque, Circuit c)
         {
+            C = c;
             Marque = marque;
             Model = model;
             _minVitesse = VitesseRandomMin();
             _maxVitesse = VitesseRandomMax();
+            tourFiniEvent += TourParcourutEn;
+  
         }
+        public Circuit C { get; set; }
         private int _minVitesse;
         private int _maxVitesse;
         public string Marque { get; private set; }
@@ -57,15 +65,26 @@ namespace CourseAutomobile.Classes
             return rdm.Next(140, 160);
         }
 
+
+        
         public double ParcourirUnTour(double distance)
         {
             double vitesse = rdm.Next(this.MinVitesse, this.MaxVitesse);
-            
-            
+
+            int ancienNbt = TourParcourut;
             double tempsTour = distance / vitesse;
             TourParcourut++;
             TempsTotal += tempsTour;
+            if(ancienNbt < TourParcourut)
+                tourFiniEvent?.Invoke(this, this.C, tempsTour);
+      
             return tempsTour;
+        }
+        
+        public void TourParcourutEn(Voiture v, Circuit c, double temps)
+        {
+            Console.WriteLine($"la voiture {v.Marque} {v.Model} vient de finir un tour en {temps} " );
+            
         }
     }
 }
