@@ -8,9 +8,7 @@ namespace CourseAutomobile.Classes
 {
     public class Voiture
     {
-
         public event Action<Voiture, Circuit, double> tourFiniEvent = null;
-
 
         public Voiture(string model, string marque, Circuit c, string pilote)
         {

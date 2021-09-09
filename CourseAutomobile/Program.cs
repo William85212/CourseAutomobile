@@ -1,6 +1,7 @@
 ﻿using CourseAutomobile.Classes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CourseAutomobile
 {
@@ -26,10 +27,8 @@ namespace CourseAutomobile
                 {
                     item.Value.ParcourirUnTour(item.Value.C.Kilometre);
                 }
-                //voiture1.ParcourirUnTour(circuit.Kilometre);
-                //voiture2.ParcourirUnTour(circuit.Kilometre);
-
             }
+
             double tempsMin = double.MaxValue;
             foreach (var item in circuit.Voitures)
             {
@@ -40,7 +39,10 @@ namespace CourseAutomobile
                 }
             }
 
-            Console.WriteLine(circuit[tempsMin].Pilote + " gagne la course");
+
+            var gagnant = circuit.Voitures.FirstOrDefault(e => e.Value.TempsTotal == tempsMin);
+
+            Console.WriteLine(gagnant.Value.Pilote + " gagne la course ");
            
         }
     }
