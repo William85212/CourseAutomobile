@@ -30,14 +30,27 @@ namespace CourseAutomobile.Classes
                 Voitures[pilote] = value;
             }
         }
+        //public Voiture this[double tempsTt]
+        //{
+        //    get
+        //    {
+        //        Voiture v;
+        //        Voitures.TryGetValue(tempsTt, out v);
+        //        return v;
+        //    }
+        //    set
+        //    {
+        //        Voitures[tempsTt] = value;
+        //    }
+        //}
 
         public void AjouterVoiture(Voiture v)
         {
             Voitures.Add(v.Pilote, v);
         }
-        public void SupprimerVoiture(string Pilote)
+        public void SupprimerVoiture(string tt)
         {
-            Voitures.Remove(Pilote);
+            Voitures.Remove(tt);
         }
     }
 }

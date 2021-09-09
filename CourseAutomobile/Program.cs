@@ -30,15 +30,18 @@ namespace CourseAutomobile
                 //voiture2.ParcourirUnTour(circuit.Kilometre);
 
             }
-            //temps total pour comparer les temps (ajouter une propriété)
-            if (voiture1.TempsTotal < voiture2.TempsTotal)
+            double tempsMin = double.MaxValue;
+            foreach (var item in circuit.Voitures)
             {
-                Console.WriteLine($"voiture {voiture1.Marque} remporte la course !!");
+                
+                if (item.Value.TempsTotal < tempsMin)
+                {
+                    tempsMin = item.Value.TempsTotal;
+                }
             }
-            else
-            {
-                Console.WriteLine($"voiture {voiture2.Marque} remporte la course !!");
-            }
+
+            Console.WriteLine(circuit[tempsMin].Pilote + " gagne la course");
+           
         }
     }
 }
