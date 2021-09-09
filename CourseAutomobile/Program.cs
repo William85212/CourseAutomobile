@@ -9,10 +9,17 @@ namespace CourseAutomobile
         {
             Circuit circuit = new Circuit(16.666, 6);
 
-            Voiture voiture1 = new Voiture("classe a", "mercedes", circuit);
-            Voiture voiture2 = new Voiture("serie 1", "bmw", circuit);
+            
 
-            while(voiture1.TourParcourut <  circuit.NombreTour && voiture2.TourParcourut < circuit.NombreTour)
+            Voiture voiture1 = new Voiture("classe a", "mercedes", circuit, "schumacher");
+            Voiture voiture2 = new Voiture("serie 1", "bmw", circuit, "alonso");
+
+            circuit.AjouterVoiture(voiture1);
+            circuit.AjouterVoiture(voiture2);
+
+            circuit["alonso"]
+
+            while (voiture1.TourParcourut <  circuit.NombreTour && voiture2.TourParcourut < circuit.NombreTour)
             {
                 voiture1.ParcourirUnTour(circuit.Kilometre);
                 voiture2.ParcourirUnTour(circuit.Kilometre);

@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace CourseAutomobile.Classes
 {
-    class Voiture
+    public class Voiture
     {
 
         public event Action<Voiture, Circuit, double> tourFiniEvent = null;
 
 
-        public Voiture(string model, string marque, Circuit c)
+        public Voiture(string model, string marque, Circuit c, string pilote)
         {
+            Pilote = pilote;
             C = c;
             Marque = marque;
             Model = model;
@@ -22,6 +23,7 @@ namespace CourseAutomobile.Classes
             tourFiniEvent += TourParcourutEn;
   
         }
+        public string Pilote { get; private set; }
         public Circuit C { get; set; }
         private int _minVitesse;
         private int _maxVitesse;
@@ -33,7 +35,7 @@ namespace CourseAutomobile.Classes
         public double TempsTotal
         {
             get { return _tempsTotal; }
-            set { _tempsTotal = value; }
+            private set { _tempsTotal = value; }//tourFiniEvent?.Invoke(this, this.C, tempsTour)
         }
 
 
@@ -48,12 +50,12 @@ namespace CourseAutomobile.Classes
         public int MinVitesse
         {
             get { return _minVitesse; }
-            set { _minVitesse = value; }
+            private set { _minVitesse = value; }
         }
         public int MaxVitesse
         {
             get { return _maxVitesse; }
-            set { _maxVitesse = value; }
+            private set { _maxVitesse = value; }
         }
         Random rdm = new Random();
         public int VitesseRandomMin()

@@ -8,12 +8,36 @@ namespace CourseAutomobile.Classes
 {
     public class Circuit
     {
+        Dictionary<string, Voiture> Voitures = new Dictionary<string, Voiture>();
         public double Kilometre { get; set; }
         public int NombreTour { get; set; }
         public Circuit(double kilometre, int nbtour)
         {
             Kilometre = kilometre;
             NombreTour = nbtour;
+        }
+
+        public Voiture this[string pilote]
+        {
+            get
+            {
+                Voiture v;
+                Voitures.TryGetValue(pilote, out v);
+                return v;
+            }
+            set
+            {
+                Voitures[pilote] = value;
+            }
+        }
+
+        public void AjouterVoiture(Voiture v)
+        {
+            Voitures.Add(v.Pilote, v);
+        }
+        public void SupprimerVoiture(string Pilote)
+        {
+            Voitures.Remove(Pilote);
         }
     }
 }
